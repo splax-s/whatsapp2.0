@@ -46,6 +46,9 @@ const styles = StyleSheet.create({
   subTitle: {
     color: 'gray',
   },
+  content: {
+    flex: 1,
+  }
 });
 
 export default ContactListItem;

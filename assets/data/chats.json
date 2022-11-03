@@ -4,7 +4,8 @@
     "user": {
       "id": "u2",
       "name": "Lukas",
-      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/lukas.jpeg"
+      "image": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/lukas.jpeg",
+      "status" : "Online"
     },
     "lastMessage": {
       "id": "m1",
@@ -113,7 +114,7 @@
     "lastMessage": {
       "id": "m8",
       "text": "What about our podcast?",
-      "createdAt": "2020-09-27T15:40:00.000Z"
+      "createdAt": "2021-09-27T15:40:00.000Z"
     }
   },
   {
