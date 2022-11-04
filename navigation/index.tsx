@@ -13,6 +13,9 @@ import LinkingConfiguration from './LinkingConfiguration';
 import {BottomTabNavigator} from './BottomTabNavigator';
 import ChatScreen from '../screens/ChatScreen';
 import ContactsScreen from '../screens/ContactsScreen';
+import GroupInfoScreen from '../screens/GroupInfoScreen';
+import NewGroupScreen from '../screens/NewGroupScreen';
+import AddContactsToGroupScreen from '../screens/AddContactsToGroupScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -43,7 +46,16 @@ function RootNavigator() {
       component={ChatScreen}
       options={{ }}
       />
-      <Stack.Screen name="Contacts" component={ContactsScreen} />
+      <Stack.Screen name="Group Info" component={GroupInfoScreen} />
+      <Stack.Screen
+      name="Contacts"
+      component={ContactsScreen}
+      />
+      <Stack.Screen name="New Group" component={NewGroupScreen} />
+      <Stack.Screen
+          name="Add Contacts"
+          component={AddContactsToGroupScreen}
+        />
     </Stack.Navigator>
   );
 }

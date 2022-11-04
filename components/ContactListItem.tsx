@@ -5,12 +5,53 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
+import { API, graphqlOperation, Auth } from "aws-amplify";
+import { createChatRoom, createChatRoomUser } from "../src/graphql/mutations";
+import { getCommonChatRoomWithUser } from "../services/chatRoomService";
 
 const ContactListItem = ({ user }) => {
-  const navigation = useNavigation();
+    const navigation = useNavigation();
+
+    const onPress = async () => {
+      // Check if we already have a ChatRoom with user
+      const existingChatRoom = await getCommonChatRoomWithUser(user.id);
+      if (existingChatRoom) {
+        navigation.navigate("Chat", { id: existingChatRoom.id });
+        return;
+      }
+
+      // Create a new Chatroom
+      const newChatRoomData = await API.graphql(
+        graphqlOperation(createChatRoom, { input: {} })
+      );
+    //   console.log(newChatRoomData);
+      if (!newChatRoomData.data?.createChatRoom) {
+        console.log("Error creating the chat error");
+      }
+      const newChatRoom = newChatRoomData.data?.createChatRoom;
+
+      // Add the clicked user to the ChatRoom
+      await API.graphql(
+        graphqlOperation(createChatRoomUser, {
+          input: { chatRoomID: newChatRoom.id, userID: user.id },
+        })
+      );
+
+      // Add the auth user to the ChatRoom
+      const authUser = await Auth.currentAuthenticatedUser();
+      await API.graphql(
+        graphqlOperation(createChatRoomUser, {
+          input: { chatRoomID: newChatRoom.id, userID: authUser.attributes.sub },
+        })
+      );
+
+      // navigate to the newly created ChatRoom
+      navigation.navigate("Chat", { id: newChatRoom.id });
+    };
+
 
   return (
-    <Pressable onPress={() => {}} style={styles.container}>
+    <Pressable onPress={onPress} style={styles.container}>
       <Image source={{ uri: user.image }} style={styles.image} />
 
       <View style={styles.content}>

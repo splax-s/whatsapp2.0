@@ -12,6 +12,7 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import SettingsScreen from '../screens/SettingsScreen';
+import ChatsScreen from '../screens/ChatsScreen/ChatsScreen';
 
 
 const BottomTab = createBottomTabNavigator();
@@ -63,7 +64,7 @@ export function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Home"
-        component={TabOneScreen}
+        component={ChatsScreen}
         options={{
             tabBarIcon: ({ color, size }) => (
                 <Ionicons name="ios-chatbubbles-sharp" size={size} color={color} />

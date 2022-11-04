@@ -10,6 +10,20 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "image": {
+                    "name": "image",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "Users": {
                     "name": "Users",
                     "isArray": true,
@@ -212,6 +226,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "text": {
                     "name": "text",
                     "isArray": false,
@@ -233,14 +254,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
                 "updatedAt": {
                     "name": "updatedAt",
                     "isArray": false,
@@ -261,8 +274,10 @@ export const schema = {
                     "type": "key",
                     "properties": {
                         "name": "byChatRoom",
+                        "queryField": "listMessagesByChatRoom",
                         "fields": [
-                            "chatroomID"
+                            "chatroomID",
+                            "createdAt"
                         ]
                     }
                 },
@@ -377,5 +392,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.1",
-    "version": "097e4e2cc26b08ab3e37db23a0c212a3"
+    "version": "44cd4c8428abf3436fecb52e71440721"
 };

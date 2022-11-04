@@ -11,7 +11,7 @@ type UserMetaData = {
 }
 
 type MessageMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
+  readOnlyFields: 'updatedAt';
 }
 
 type ChatRoomUserMetaData = {
@@ -20,6 +20,8 @@ type ChatRoomUserMetaData = {
 
 type EagerChatRoom = {
   readonly id: string;
+  readonly name?: string | null;
+  readonly image?: string | null;
   readonly Users?: (ChatRoomUser | null)[] | null;
   readonly Messages?: (Message | null)[] | null;
   readonly LastMessage?: Message | null;
@@ -30,6 +32,8 @@ type EagerChatRoom = {
 
 type LazyChatRoom = {
   readonly id: string;
+  readonly name?: string | null;
+  readonly image?: string | null;
   readonly Users: AsyncCollection<ChatRoomUser>;
   readonly Messages: AsyncCollection<Message>;
   readonly LastMessage: AsyncItem<Message | undefined>;
@@ -74,19 +78,19 @@ export declare const User: (new (init: ModelInit<User, UserMetaData>) => User) &
 
 type EagerMessage = {
   readonly id: string;
+  readonly createdAt: string;
   readonly text: string;
   readonly chatroomID: string;
   readonly userID: string;
-  readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
 type LazyMessage = {
   readonly id: string;
+  readonly createdAt: string;
   readonly text: string;
   readonly chatroomID: string;
   readonly userID: string;
-  readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
 
